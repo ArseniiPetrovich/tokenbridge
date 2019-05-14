@@ -27,7 +27,7 @@ jobs:
       - run: yarn run test
   ui-e2e:
     docker:
-      - image: circleci/node:10.15
+      - image: circleci/node:jessie-browsers
     steps:
         - checkout
         - run: git submodule update --init
@@ -39,7 +39,4 @@ workflows:
   version: 2
   tokenbridge:
     jobs:
-      - lint
-      - test
-      - ansible-lint
       - ui-e2e
