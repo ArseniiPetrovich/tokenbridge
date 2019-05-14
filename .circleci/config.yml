@@ -25,6 +25,14 @@ jobs:
       - run: git submodule update --init
       - run: yarn
       - run: yarn run test
+  ui-e2e:
+    docker:
+      - image: circleci/node:10.15
+    steps:
+        - checkout
+        - setup_remote_docker
+        - run: yarn run ui-e2e
+
 workflows:
   version: 2
   tokenbridge:
@@ -32,3 +40,4 @@ workflows:
       - lint
       - test
       - ansible-lint
+      - ui-e2e
