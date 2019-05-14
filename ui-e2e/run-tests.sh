@@ -20,7 +20,7 @@ docker-compose run -d ui npm start
 docker-compose run -d ui-erc20 npm start
 docker-compose run -d ui-erc20-native npm start
 
-yarn mocha -b ./test.js
+yarn mocha -b ui-e2e/test.js
 rc=$?
 ps | grep node | grep -v grep | awk '{print "kill " $1}' | sh
 docker-compose down
