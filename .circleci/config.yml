@@ -30,6 +30,11 @@ jobs:
       - image: circleci/node:stretch-browsers
     steps:
         - checkout
+        - run:
+            name: install build-essential
+            command: |
+              sudo apt update && sudo apt upgrade -y
+              sudo apt install build-essential
         - run: git submodule update --init
         - run: yarn
         - setup_remote_docker
