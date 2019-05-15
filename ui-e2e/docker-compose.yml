@@ -32,7 +32,7 @@ services:
     ports:
     - "15672:15672"
   bridge:
-    build: ../oracle
+    build: bridge
     environment:
     - NODE_ENV=production
     - BRIDGE_MODE=NATIVE_TO_ERC
@@ -61,7 +61,7 @@ services:
     - testnet
     command: "true"
   bridge-erc20:
-    build: ../oracle
+    build: bridge
     environment:
     - NODE_ENV=production
     - BRIDGE_MODE=ERC_TO_ERC
@@ -91,7 +91,7 @@ services:
     - testnet
     command: "true"
   bridge-erc20-native:
-    build: ../oracle
+    build: bridge
     environment:
     - NODE_ENV=production
     - BRIDGE_MODE=ERC_TO_NATIVE
