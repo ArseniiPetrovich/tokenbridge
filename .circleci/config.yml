@@ -27,7 +27,7 @@ jobs:
       - run: yarn run test
   ui-e2e:
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:stretch-browsers
     steps:
         - checkout
         - run: git submodule update --init
