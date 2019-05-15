@@ -12,11 +12,12 @@
   "workspaces": [
     "oracle",
     "bridge-ui",
-    "monitor"
+    "monitor",
+    "ui-e2e"
   ],
   "scripts": {
-    "lint": "yarn wsrun --exclude bridge-ui lint",
-    "test": "yarn wsrun --exclude bridge-ui --exclude monitor test",
+    "lint": "yarn wsrun --exclude bridge-ui --exclude ui-e2e lint",
+    "test": "yarn wsrun --exclude bridge-ui --exclude monitor --exclude ui-e2e test",
     "ansible-lint": "./deployment/lint.sh",
     "ui-e2e": "./ui-e2e/run-tests.sh"
   }
