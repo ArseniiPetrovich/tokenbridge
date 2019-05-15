@@ -51,7 +51,7 @@ class Utils {
   }
 
   static async startBrowserWithMetamask() {
-    let source = './ui-e2e/MetaMask.crx';
+    let source = './MetaMask.crx';
     let options = new chrome.Options();
     await options.addExtensions(source);
     await options.addArguments('disable-popup-blocking');
