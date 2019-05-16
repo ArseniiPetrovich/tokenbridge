@@ -7,7 +7,10 @@ jobs:
       image: circleci/classic:latest
     steps:
         - checkout
-        - run: nvm install 11.4.0
+        - run: |
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+        - run: nvm install 11.4.0 && nvm alias default 11.4.0
         - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         - run: sudo apt-get update && sudo apt-get install yarn
