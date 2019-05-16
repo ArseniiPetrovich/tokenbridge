@@ -36,8 +36,9 @@ jobs:
       image: circleci/classic:latest
     steps:
         - checkout
-        - run: 
-          command: node/install
+        - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        - run: sudo apt-get update && sudo apt-get install yarn
         - run: git submodule update --init
         - run: yarn
         - run: yarn run ui-e2e
