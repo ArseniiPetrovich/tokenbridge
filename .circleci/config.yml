@@ -1,13 +1,7 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.0.1
 jobs:
-  build:
-    docker:
-      - image: circleci/node:10.15
-    steps:
-      - checkout
-      - run: git submodule update --init
-      - run: yarn
-      - run: yarn run build
   lint:
     docker:
       - image: circleci/node:10.15
@@ -22,17 +16,6 @@ jobs:
     steps:
       - checkout
       - run: ./deployment/lint.sh
-  test:
-    docker:
-      - image: circleci/node:10.15
-    environment:
-      HOME_RPC_URL: http://example.com
-      FOREIGN_RPC_URL: http://example.com
-    steps:
-      - checkout
-      - run: git submodule update --init
-      - run: yarn
-      - run: yarn run test
   oracle-e2e:
     docker:
       - image: circleci/node:10.15
@@ -42,15 +25,23 @@ jobs:
         - run: yarn run oracle-e2e
   ui-e2e:
     machine:
-      image: circleci/classic:latest-node
+      image: circleci/classic:latest
     steps:
         - checkout
         - run: git submodule update --init
         - run: yarn
         - run: yarn run ui-e2e
-
+  test:
+    machine:
+      image: circleci/classic:latest
+    steps:
+        - checkout
+        - run: 
+          command: node/install
+        - run: git submodule update --init
+        - run: yarn
+        - run: yarn run ui-e2e
 workflows:
-  version: 2
   tokenbridge:
     jobs:
       - ui-e2e
