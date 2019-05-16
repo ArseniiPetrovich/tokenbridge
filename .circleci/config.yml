@@ -36,6 +36,7 @@ jobs:
       image: circleci/classic:latest
     steps:
         - checkout
+        - run: sudo sh -c "ulimit -n unlimited && exec su $LOGNAME"
         - run: sudo apt update && sudo apt install nodejs npm -y
         - run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         - run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
